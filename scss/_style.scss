@@ -1,0 +1,251 @@
+body {
+    font-family: Poppins;
+    color: #fff;
+
+    background-color: #aaaaaa;
+}
+
+.wrapper {
+}
+
+.container {
+    margin: 0 auto;
+
+    margin-top: 70px;
+    padding: 50px 80px;
+    width: 1357px;
+    border-radius: 40px;
+
+    background: #383838;
+}
+
+.header {
+    &__bar {
+        display: flex;
+        justify-content: space-between;
+
+        &-search {
+            height: 60px;
+            border-radius: 40px;
+            border: none;
+            padding: 15px 15px 15px 100px;
+            box-sizing: border-box;
+
+            font-size: 18px;
+            font-weight: 800;
+
+            box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.25);
+            background:
+                url(/img/search.png) no-repeat 25px 8px,
+                #444;
+            color: #fff;
+
+            width: 75%;
+        }
+
+        &-location {
+            width: 20%;
+            height: 60px;
+            box-sizing: border-box;
+            border: none;
+            border-radius: 40px;
+
+            padding-left: 60px;
+
+            font-size: 22px;
+            font-weight: 800;
+
+            box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.25);
+            background:
+                url(/img/current-location.png) no-repeat 20px 12px,
+                #4cbb17;
+            color: #fff;
+        }
+    }
+}
+
+.main {
+    &-top {
+        display: flex;
+        justify-content: space-between;
+        margin: 50px 0 50px;
+
+        &__left {
+            width: 500px;
+            padding: 70px 0 50px 0;
+            box-sizing: border-box;
+
+            filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 0.5));
+            background: #444444;
+            border-radius: 30px;
+
+            text-align: center;
+        }
+
+        &__right {
+            display: flex;
+            justify-content: space-around;
+
+            padding: 30px;
+            border-radius: 30px;
+
+            background: #444444;
+            box-shadow: 10px 10px 4px 0px rgba(0, 0, 0, 0.5);
+        }
+    }
+
+    &-city {
+        margin-bottom: 30px;
+
+        font-size: 36px;
+        font-weight: 700;
+    }
+
+    &-clock {
+        font-size: 96px;
+        font-weight: 700;
+    }
+
+    &-date {
+        font-size: 20px;
+        font-weight: 400;
+    }
+
+    &-bottom {
+        display: flex;
+
+        &__left {
+            padding: 40px 30px;
+            filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 0.50));
+            background: #444444;
+            border-radius: 30px;
+        }
+    }
+}
+
+.informations {
+    &-first {
+    }
+
+    &-temp {
+        font-size: 80px;
+        font-weight: 700;
+
+        &__felike {
+            margin-bottom: 40px;
+
+            font-size: 20px;
+            font-weight: 600;
+
+            & span {
+                font-size: 32px;
+                font-weight: 700;
+            }
+        }
+    }
+
+    &-sunrise {
+        margin-bottom: 15px;
+        display: flex;
+
+        &-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        &-subtitle {
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
+
+    &-second {
+        text-align: center;
+        width: 270px;
+
+        & img {
+            position: relative;
+            width: 270px;
+            height: 230px;
+            // top: -30px;
+        }
+    }
+
+    &-sun {
+        font-size: 32px;
+        font-weight: 600;
+    }
+
+    &-third {
+        display: flex;
+        flex-wrap: wrap;
+
+        width: 260px;
+
+        &__blocks {
+            width: 115px;
+
+            flex-grow: 1;
+            margin: 7px;
+
+            text-align: center;
+
+            img {
+                width: 60px;
+                height: 60px;
+
+                margin-bottom: 10px;
+            }
+        }
+
+        &__numbers {
+            margin-bottom: 15px;
+
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        &__title {
+            font-size: 16px;
+            font-weight: 500;
+        }
+    }
+}
+
+.forecast {
+    &-title {
+        font-size: 32px;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    &-list {
+    }
+
+    &-day {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        & img {
+            width: 60px;
+            height: 60px;
+        }
+    }
+
+    &-temp {
+        margin: 0 40px;
+        font-size: 24px;
+        font-weight: 600;
+        width: 90px;
+        text-align: center;
+    }
+
+    &-date {
+        font-size: 20px;
+        font-weight: 600;
+        width: 200px;
+        text-align: center;
+    }
+}

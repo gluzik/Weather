@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="container">
+            <div class="header">
+                <div class="header__bar">
+                    <input type="text" class="header__bar-search" placeholder="Search for your preffered city...">
+                    <button class="header__bar-location">Current Location</button>
+                </div>
+            </div>
+            <div class="main">
+                <div class="main-top">
+                    <div class="main-top__left">
+                        <h2 class="main-city" id="city">Athens</h2>
+                        <div class="main-clock" id="clock">09:03</div>
+                        <div class="main-date" id="date">Thursday, 31 Aug</div>
+                    </div>
+                    <div class="main-top__right">
+                        <div class="informations-first">
+                            <div class="informations-temp"><span id="temp">24</span>°C</div>
+                            <div class="informations-temp__felike">Feels like: <span id="temp-fellike">22</span><span>°C</span></div>
+                            <div class="informations-sunrise">
+                                <img src="img/sunrise.svg" alt="sunrise">
+                                <div class="informations-sunrise__right">
+                                    <h3 class="informations-sunrise-title">Sunrise</h3>
+                                    <p class="informations-sunrise-subtitle" id="sunrise">06:37</p>
+                                </div>
+                            </div>
+                            <div class="informations-sunrise">
+                                <img src="img/sunset.svg" alt="sunrise">
+                                <div class="informations-sunrise__right">
+                                    <h3 class="informations-sunrise-title">Sunset</h3>
+                                    <p class="informations-sunrise-subtitle" id="sunset">06:37</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="informations-second">
+                            <img id="images-output" src="img/options/sun.png" alt="">
+                            <h3 class="informations-sun" id="weather-text">Sunny</h3>
+                        </div>
+                        <div class="informations-third">
+                            <div class="informations-third__blocks">
+                                <img src="img/third/humidity.png" alt="">
+                                <div class="informations-third__numbers"><span id="humidity">41</span>%</div>
+                                <h3 class="informations-third__title">Humidity</h3>
+                            </div>
+                            <div class="informations-third__blocks">
+                                <img src="img/third/wind.png" alt="">
+                                <div class="informations-third__numbers"><span id="wind">2</span>km/h</div>
+                                <h3 class="informations-third__title">Wind Speed</h3>
+                            </div>
+                            <div class="informations-third__blocks">
+                                <img src="img/third/pressure.png" alt="">
+                                <div class="informations-third__numbers"><span id="pressure">997</span>hPa</div>
+                                <h3 class="informations-third__title">Pressure</h3>
+                            </div>
+                            <div class="informations-third__blocks">
+                                <img src="img/third/uv.png" alt="">
+                                <div class="informations-third__numbers"><span id="uv">8</span></div>
+                                <h3 class="informations-third__title">UV</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-bottom">
+                    <div class="main-bottom__left">
+                        <h2 class="forecast-title">5 Days Forecast:</h2>
+                        <ul id="forecast-list">
+                            <li class="forecast-day">
+                                <img src="img/temp/clouds.png" alt="">
+                                <div class="forecast-temp">20°C</div>
+                                <div class="forecast-date">Friday, 1 Sep</div>
+                            </li>
+                            <li class="forecast-day">
+                                <img src="img/temp/clouds.png" alt="">
+                                <div class="forecast-temp">20°C</div>
+                                <div class="forecast-date">Friday, 1 Sep</div>
+                            </li>
+                            <li class="forecast-day">
+                                <img src="img/temp/clouds.png" alt="">
+                                <div class="forecast-temp">20°C</div>
+                                <div class="forecast-date">Friday, 1 Sep</div>
+                            </li>
+                            <li class="forecast-day">
+                                <img src="img/temp/clouds.png" alt="">
+                                <div class="forecast-temp">20°C</div>
+                                <div class="forecast-date">Friday, 1 Sep</div>
+                            </li>
+                            <li class="forecast-day">
+                                <img src="img/temp/clouds.png" alt="">
+                                <div class="forecast-temp">20°C</div>
+                                <div class="forecast-date">Friday, 1 Sep</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="main-bottom__right">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/main.js"></script>
+    <script>
+
+
+        // if (navigator.geolocation) {
+        //     navigator.geolocation.getCurrentPosition(showPosition);
+        // } else {
+        //     alert(1)
+        // }
+
+        // function showPosition(position) {
+        //     var lat = position.coords.latitude;
+        //     var lon = position.coords.longitude;
+        //     document.body.innerHTML = "Широта: " + lat + "<br>Долгота: " + lon;
+        // }
+
+        // fetch(urlLocation)
+        //     .then(json => json.json())
+        //     .then(item => console.log(item[0].name))
+
+        // let curentLocation = {
+        //     curentCity: '',
+        //     urlWeather: '',
+
+        //     editCurentCity(city) {
+        //         let url = `s`;
+        //         fetch(url)
+        //             .then(reference => reference.json())
+        //             .then(json => json[0])
+        //             .then(item => { this.curentCity = item });
+        //     },
+
+        //     editWeather() {
+        //         let url = `https://api.openweathermap.org/data/2.5/weather?lat=${this.curentCity.lat}&lon=${this.curentCity.lon}&units=metric&appid=711fcf7bf21384f9b0f846277625f941`
+        //         console.log(url)
+        //         fetch(url)
+        //             .then(reference => reference.json())
+        //             .then(json => console.log(json))
+        //     }
+        // }
+
+
+        // curentLocation.editCurentCity("Bydgoszcz")
+
+        // setTimeout(() => {
+        //     curentLocation.editWeather();
+        // }, 1000)
+
+
+
+        // document.body.addEventListener('keyup', (e) => {
+        //     if (e.code === 'Enter') {
+        //         console.log(curentLocation.curentCity)
+        //     }
+        // })
+
+
+        // class CurrentLocation {
+        //     constructor () {
+
+        //     }
+        // }
+
+        // url = 'https://api.weatherapi.com/v1/current.json?key=227dd7983d814751987210757232012&q=Брест&aqi=no';
+
+        // fetch (url)
+        //     .then(rewerse => rewerse.json())
+        //     .then(item => console.log(item.current))
+
+    </script>
+</body>
+
+</html>
