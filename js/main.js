@@ -58,8 +58,8 @@ class CurentCity {
                     li.addEventListener("click", () => {
                         this.setCurrentCity(option.name);
                         this.loadDate();
-                        console.log(this.location);
                         loadDateAll();
+                        Search.clearLine();
                     })
 
                     output.append(li);
@@ -265,6 +265,10 @@ class Search {
         this.blueSearch();
     }
 
+    clearLine() {
+        this.searchLine.value = '';
+    }
+
     blueSearch() {
         this.searchLine.addEventListener("blur", () => {
             setTimeout(() => {
@@ -294,6 +298,7 @@ class Search {
             curentCity.searchCity(this.searchLine.value, document.querySelector('#search-output'))
         })
     }
+
 }
 
 let search = new Search(
@@ -336,5 +341,6 @@ function loadDateAll() {
         forecast.createElementsForecast(curentCity.forecast.forecastday)
         hourlyForecast.showHours(curentCity.forecast.forecastday[0].hour)
         hourlyForecast.sliderItem();
+        search.clearLine();
     }, 1000)
 }
