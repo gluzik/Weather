@@ -23,6 +23,7 @@ body {
     &__bar {
         display: flex;
         justify-content: space-between;
+        position: relative;
 
         &-search {
             height: 60px;
@@ -40,7 +41,39 @@ body {
                 #444;
             color: #fff;
 
-            width: 75%;
+            width: 1015px;
+
+            z-index: 2;
+        }
+
+        &-options {
+            position: absolute;
+            padding: 40px 0 0;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-sizing: border-box;
+            top: 40px;
+            left: 0px;
+            width: 1015px;
+            background-color: #636363;
+            opacity: 0.7;
+            z-index: 1;
+
+            font-size: 24px;
+            font-weight: 600;
+
+            &-display {
+                display: none;
+            }
+
+            &-city {
+                padding: 15px 80px;
+                
+                &:hover {
+                    background: #343434;
+                    cursor: pointer;
+                }
+            }
         }
 
         &-location {

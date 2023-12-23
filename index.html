@@ -19,6 +19,10 @@
             <div class="header">
                 <div class="header__bar">
                     <input type="text" class="header__bar-search" placeholder="Search for your preffered city...">
+                    <ul id="search-output" class="header__bar-options header__bar-options-display">
+                        <li class="header__bar-options-city">Bydgoszcz, Poland</li>
+                        <li class="header__bar-options-city">12grgreger3</li>
+                    </ul>
                     <button class="header__bar-location">Current Location</button>
                 </div>
             </div>
@@ -32,7 +36,8 @@
                     <div class="main-top__right">
                         <div class="informations-first">
                             <div class="informations-temp"><span id="temp">24</span>°C</div>
-                            <div class="informations-temp__felike">Feels like: <span id="temp-fellike">22</span><span>°C</span></div>
+                            <div class="informations-temp__felike">Feels like: <span
+                                    id="temp-fellike">22</span><span>°C</span></div>
                             <div class="informations-sunrise">
                                 <img src="img/sunrise.svg" alt="sunrise">
                                 <div class="informations-sunrise__right">
@@ -153,8 +158,10 @@
                                 <div class="hours-wind">3km/h</div>
                             </li>
                         </ul>
-                        <span class="hours-arrow__left" id="arrow-left"><img src="img/arrow/arrow-left-noactive.png" alt="arrow" width="50px"></span>
-                        <span class="hours-arrow__right" id="arrow-right"><img src="img/arrow/arrow-right.png" alt="arrow" width="50px"></span>
+                        <span class="hours-arrow__left" id="arrow-left"><img src="img/arrow/arrow-left-noactive.png"
+                                alt="arrow" width="50px"></span>
+                        <span class="hours-arrow__right" id="arrow-right"><img src="img/arrow/arrow-right.png"
+                                alt="arrow" width="50px"></span>
                     </div>
                 </div>
             </div>
@@ -165,21 +172,24 @@
     <script src="./js/main.js"></script>
     <script>
 
-        let input = document.querySelector('#test');
-        let test2;
+        // let input = document.querySelector('#test');
+        // let test2;
 
-        input.addEventListener('input', () => {
-            let url = `http://api.weatherapi.com/v1/search.json?key=227dd7983d814751987210757232012&q=${input.value}`
-            fetch(url)
-                .then(reverse => reverse.json())
-                .then(json => {
-                    test2 = json
-                });
+        // input.addEventListener('input', () => {
+        //     let url = `http://api.weatherapi.com/v1/search.json?key=227dd7983d814751987210757232012&q=${input.value}`
+        //     fetch(url)
+        //         .then(reverse => reverse.json())
+        //         .then(json => {
+        //             test2 = json
+        //         })
+        //         .catch(error => {
+        //             console.log(error)
+        //         })
+        //     setTimeout(() => {
+        //         console.log(test2)
+        //     }, 1000)
+        // }) 
 
-            setTimeout(() => {
-                console.log(test2)
-            }, 1000)
-        }) 
     </script>
 </body>
 

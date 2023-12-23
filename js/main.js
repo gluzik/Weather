@@ -37,7 +37,29 @@ class CurentCity {
         this.uv = this.current.uv;
     }
 
-    seatchCity() {
+    searchCity(input, output) {
+        if (input !== "") {
+            this.searchApi = `http://api.weatherapi.com/v1/search.json?key=227dd7983d814751987210757232012&q=${input}`
+
+            fetch(this.searchApi)
+                .then(reference => reference.json())
+                .then(json => {
+                    this.searchArr = json;
+                    console.log(json)
+                });
+
+            setTimeout(() => {
+                output.innerHTML = "";
+
+                this.searchArr.forEach(option => {
+                    let li = document.createElement("li");
+                    li.classList.add("header__bar-options-city");
+                    li.innerHTML = option.name;
+                    output.append(li);
+                })
+            }, 500)
+        }
+
 
     }
 
@@ -247,6 +269,8 @@ curentCity.loadDate();
 let forecast = new Forecast(document.querySelector('#forecast-list'))
 let hourlyForecast = new HourlyForecast(document.querySelector('#hours-list'))
 
+
+
 setTimeout(() => {
     curentCity.setData()
     place.output(curentCity)
@@ -254,4 +278,5 @@ setTimeout(() => {
     hourlyForecast.showHours(curentCity.forecast.forecastday[0].hour)
     hourlyForecast.sliderItem();
     console.log(curentCity.forecast)
+    curentCity.searchCity("Кра", document.querySelector('#search-output'))
 }, 1000)
