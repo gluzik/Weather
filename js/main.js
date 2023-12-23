@@ -54,14 +54,20 @@ class CurentCity {
                 this.searchArr.forEach(option => {
                     let li = document.createElement("li");
                     li.classList.add("header__bar-options-city");
-                    li.innerHTML = option.name;
+                    li.innerHTML = `${option.name}, ${option.country}`;
+                    li.addEventListener("click", () => {
+                        this.setCurrentCity(option.name);
+                        this.loadDate();
+                        console.log(this.location);
+                        loadDateAll();
+                    })
+
                     output.append(li);
                 })
             }, 500)
         }
-
-
     }
+
 
     static setDate(dayDate) {
         let currentDate = dayDate.split(" ");
@@ -186,6 +192,8 @@ class HourlyForecast {
                 compasIcon.setAttribute("src", "img/temp/WSW.png");
             } else if (data[i].wind_dir === "WNW") {
                 compasIcon.setAttribute("src", "img/temp/WNW.png");
+            } else {
+                compasIcon.setAttribute("src", "img/temp/west.png");
             }
 
             compasIcon.setAttribute("alt", "commpas");
@@ -246,6 +254,53 @@ class HourlyForecast {
     }
 }
 
+class Search {
+    constructor(searchInput, searchOutput) {
+        this.searchLine = searchInput;
+        this.outputList = searchOutput;
+
+        this.focusSearch();
+        this.submitSearch();
+        this.inputSearch();
+        this.blueSearch();
+    }
+
+    blueSearch() {
+        this.searchLine.addEventListener("blur", () => {
+            setTimeout(() => {
+                this.outputList.classList.add("header__bar-options-display")
+            }, 500)
+        })
+    }
+
+    focusSearch() {
+        this.searchLine.addEventListener("focus", () => {
+            this.outputList.classList.remove("header__bar-options-display");
+        })
+    }
+
+    submitSearch() {
+        document.body.addEventListener("keyup", (e) => {
+            if (e.code !== "Enter") return;
+            data.setCurrentCity(option.name);
+            data.loadDate();
+            loadDateAll();
+            console.log(e.code)
+        })
+    }
+
+    inputSearch() {
+        this.searchLine.addEventListener("input", () => {
+            curentCity.searchCity(this.searchLine.value, document.querySelector('#search-output'))
+        })
+    }
+}
+
+let search = new Search(
+    document.querySelector('#search-input'),
+    document.querySelector('#search-output')
+)
+
 let curentCity = new CurentCity();
 curentCity.setCurrentCity("Bydgoszcz")
 
@@ -271,12 +326,15 @@ let hourlyForecast = new HourlyForecast(document.querySelector('#hours-list'))
 
 
 
-setTimeout(() => {
-    curentCity.setData()
-    place.output(curentCity)
-    forecast.createElementsForecast(curentCity.forecast.forecastday)
-    hourlyForecast.showHours(curentCity.forecast.forecastday[0].hour)
-    hourlyForecast.sliderItem();
-    console.log(curentCity.forecast)
-    curentCity.searchCity("Кра", document.querySelector('#search-output'))
-}, 1000)
+
+
+
+function loadDateAll() {
+    setTimeout(() => {
+        curentCity.setData()
+        place.output(curentCity)
+        forecast.createElementsForecast(curentCity.forecast.forecastday)
+        hourlyForecast.showHours(curentCity.forecast.forecastday[0].hour)
+        hourlyForecast.sliderItem();
+    }, 1000)
+}

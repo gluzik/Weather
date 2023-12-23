@@ -18,10 +18,8 @@
         <div class="container">
             <div class="header">
                 <div class="header__bar">
-                    <input type="text" class="header__bar-search" placeholder="Search for your preffered city...">
+                    <input type="text" id="search-input" class="header__bar-search" placeholder="Search for your preffered city...">
                     <ul id="search-output" class="header__bar-options header__bar-options-display">
-                        <li class="header__bar-options-city">Bydgoszcz, Poland</li>
-                        <li class="header__bar-options-city">12grgreger3</li>
                     </ul>
                     <button class="header__bar-location">Current Location</button>
                 </div>
@@ -167,29 +165,8 @@
             </div>
         </div>
     </div>
-
-    <input id="test" type="text" style="height: 50px; padding: 50px;">
     <script src="./js/main.js"></script>
     <script>
-
-        // let input = document.querySelector('#test');
-        // let test2;
-
-        // input.addEventListener('input', () => {
-        //     let url = `http://api.weatherapi.com/v1/search.json?key=227dd7983d814751987210757232012&q=${input.value}`
-        //     fetch(url)
-        //         .then(reverse => reverse.json())
-        //         .then(json => {
-        //             test2 = json
-        //         })
-        //         .catch(error => {
-        //             console.log(error)
-        //         })
-        //     setTimeout(() => {
-        //         console.log(test2)
-        //     }, 1000)
-        // }) 
-
     </script>
 </body>
 
