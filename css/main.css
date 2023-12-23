@@ -165,6 +165,7 @@ body {
 .main-bottom__right {
   padding: 40px 70px;
   margin-left: 50px;
+  position: relative;
   max-width: 830px;
   overflow: hidden;
   background: #444444;
@@ -176,6 +177,7 @@ body {
 .informations-temp {
   font-size: 80px;
   font-weight: 700;
+  width: 220px;
 }
 .informations-temp__felike {
   margin-bottom: 40px;
@@ -288,13 +290,14 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border: 1px solid red;
   overflow: hidden;
 }
 .hours-item {
   margin: 0 10px;
   padding: 20px 25px;
   background: #373636;
+  position: relative;
+  left: 0;
   border-radius: 40px;
   text-align: center;
 }
@@ -312,4 +315,14 @@ body {
   margin-top: 15px;
   font-size: 20px;
   font-weight: 700;
+}
+.hours-arrow__left {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+}
+.hours-arrow__right {
+  position: absolute;
+  right: 10px;
+  top: 50%;
 }

@@ -23,8 +23,8 @@ class CurentCity {
 
     setData() {
         this.city = this.location.name;
-        this.setTime();
-        this.date = this.setDate(this.location.localtime);
+        this.time = CurentCity.setTime(this.location.localtime);
+        this.date = CurentCity.setDate(this.location.localtime);
         this.temp = this.current.temp_c;
         this.feelsLike = this.current.feelslike_c;
         this.sunrise = this.forecast.forecastday[0].astro.sunrise;
@@ -37,7 +37,11 @@ class CurentCity {
         this.uv = this.current.uv;
     }
 
-    setDate(dayDate) {
+    seatchCity() {
+
+    }
+
+    static setDate(dayDate) {
         let currentDate = dayDate.split(" ");
 
         let date = new Date(currentDate);
@@ -48,9 +52,9 @@ class CurentCity {
         return `${weekDay}, ${dateNumbers} ${monthShort}`;
     }
 
-    setTime () {
-        let time = this.location.localtime.split(" ");
-        this.time = time[1];
+    static setTime(dayTime) {
+        let time = dayTime.split(" ");
+        return time[1];
     }
 }
 
@@ -99,7 +103,7 @@ class Forecast {
 
     createElementsForecast(data) {
         this.forecastOutput.innerHTML = '';
-        for(let i = 1; i < data.length; i++) {
+        for (let i = 1; i < data.length; i++) {
             let li = document.createElement("li");
             let img = document.createElement("img");
             let temp = document.createElement('div');
@@ -113,7 +117,7 @@ class Forecast {
             temp.classList.add("forecast-temp");
             li.append(temp);
 
-            date.innerHTML = curentCity.setDate(data[i].date);
+            date.innerHTML = CurentCity.setDate(data[i].date);
             date.classList.add("forecast-date");
             li.append(date);
 
@@ -121,6 +125,102 @@ class Forecast {
 
             this.forecastOutput.append(li);
         }
+    }
+}
+
+class HourlyForecast {
+    items = [];
+
+    constructor(hourlyList) {
+        this.hourlyuOutput = hourlyList;
+    }
+
+    showHours(data) {
+        this.hourlyuOutput.innerHTML = '';
+        this.items = [];
+
+        for (let i = 0; i < data.length; i++) {
+            let li = document.createElement("li");
+            let hours = document.createElement("div");
+            let weatherIcon = document.createElement("img");
+            let hoursTemp = document.createElement("div");
+            let compasIcon = document.createElement("img");
+            let windSpeed = document.createElement("div");
+
+            li.classList.add("hours-item")
+
+            hours.innerHTML = CurentCity.setTime(data[i].time);
+            hours.classList.add("hours-time");
+
+            weatherIcon.setAttribute("src", data[i].condition.icon);
+            weatherIcon.setAttribute("alt", "icon");
+
+            hoursTemp.innerHTML = data[i].temp_c + "°C";
+            hoursTemp.classList.add("hours-temp");
+
+            if (data[i].wind_dir === "W") {
+                compasIcon.setAttribute("src", "img/temp/west.png");
+            } else if (data[i].wind_dir === "WSW") {
+                compasIcon.setAttribute("src", "img/temp/WSW.png");
+            } else if (data[i].wind_dir === "WNW") {
+                compasIcon.setAttribute("src", "img/temp/WNW.png");
+            }
+
+            compasIcon.setAttribute("alt", "commpas");
+            compasIcon.width = "55";
+
+            windSpeed.innerHTML = data[i].wind_kph + 'km/h';
+            windSpeed.classList.add("hours-wind");
+
+            li.append(hours);
+            li.append(weatherIcon);
+            li.append(hoursTemp);
+            li.append(compasIcon);
+            li.append(windSpeed);
+
+            this.hourlyuOutput.append(li);
+            this.items.push(li);
+        }
+    }
+
+    sliderItem() {
+        this.buttonLeft = document.querySelector('#arrow-left');
+        this.buttonRight = document.querySelector('#arrow-right');
+        this.move = 0;
+
+        this.buttonRight.addEventListener('click', () => {
+            if (this.move <= -3300) return;
+
+            this.move = this.move - 300;
+            this.items.forEach(item => {
+                item.style.left = `${this.move}px`;
+            })
+
+            if (this.move < 0) {
+                this.buttonLeft.children[0].setAttribute("src", "img/arrow/arrow-left.png");
+            }
+
+            if (this.move === -3300) {
+                this.buttonRight.children[0].setAttribute("src", "img/arrow/arrow-right-noactive.png");
+            }
+        })
+
+        this.buttonLeft.addEventListener("click", () => {
+            if (this.move >= 0) return;
+
+            this.move = this.move + 300;
+            this.items.forEach(item => {
+                item.style.left = `${this.move}px`;
+            })
+
+            if (this.move === 0) {
+                this.buttonLeft.children[0].setAttribute("src", "img/arrow/arrow-left-noactive.png");
+            }
+
+            if (this.move > -3300) {
+                this.buttonRight.children[0].setAttribute("src", "img/arrow/arrow-right.png");
+            }
+        })
     }
 }
 
@@ -145,10 +245,13 @@ let place = new EditWindow(
 curentCity.loadDate();
 
 let forecast = new Forecast(document.querySelector('#forecast-list'))
+let hourlyForecast = new HourlyForecast(document.querySelector('#hours-list'))
 
 setTimeout(() => {
     curentCity.setData()
     place.output(curentCity)
     forecast.createElementsForecast(curentCity.forecast.forecastday)
+    hourlyForecast.showHours(curentCity.forecast.forecastday[0].hour)
+    hourlyForecast.sliderItem();
     console.log(curentCity.forecast)
 }, 1000)

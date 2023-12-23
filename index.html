@@ -109,7 +109,7 @@
                     </div>
                     <div class="main-bottom__right">
                         <h2 class="hours-title">Hourly Forecast:</h2>
-                        <ul class="hours-list">
+                        <ul class="hours-list" id="hours-list">
                             <li class="hours-item">
                                 <div class="hours-time">12:00</div>
                                 <img src="img/temp/clouds.png" alt="icon">
@@ -153,81 +153,33 @@
                                 <div class="hours-wind">3km/h</div>
                             </li>
                         </ul>
+                        <span class="hours-arrow__left" id="arrow-left"><img src="img/arrow/arrow-left-noactive.png" alt="arrow" width="50px"></span>
+                        <span class="hours-arrow__right" id="arrow-right"><img src="img/arrow/arrow-right.png" alt="arrow" width="50px"></span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <input id="test" type="text" style="height: 50px; padding: 50px;">
     <script src="./js/main.js"></script>
     <script>
 
+        let input = document.querySelector('#test');
+        let test2;
 
-        // if (navigator.geolocation) {
-        //     navigator.geolocation.getCurrentPosition(showPosition);
-        // } else {
-        //     alert(1)
-        // }
+        input.addEventListener('input', () => {
+            let url = `http://api.weatherapi.com/v1/search.json?key=227dd7983d814751987210757232012&q=${input.value}`
+            fetch(url)
+                .then(reverse => reverse.json())
+                .then(json => {
+                    test2 = json
+                });
 
-        // function showPosition(position) {
-        //     var lat = position.coords.latitude;
-        //     var lon = position.coords.longitude;
-        //     document.body.innerHTML = "Широта: " + lat + "<br>Долгота: " + lon;
-        // }
-
-        // fetch(urlLocation)
-        //     .then(json => json.json())
-        //     .then(item => console.log(item[0].name))
-
-        // let curentLocation = {
-        //     curentCity: '',
-        //     urlWeather: '',
-
-        //     editCurentCity(city) {
-        //         let url = `s`;
-        //         fetch(url)
-        //             .then(reference => reference.json())
-        //             .then(json => json[0])
-        //             .then(item => { this.curentCity = item });
-        //     },
-
-        //     editWeather() {
-        //         let url = `https://api.openweathermap.org/data/2.5/weather?lat=${this.curentCity.lat}&lon=${this.curentCity.lon}&units=metric&appid=711fcf7bf21384f9b0f846277625f941`
-        //         console.log(url)
-        //         fetch(url)
-        //             .then(reference => reference.json())
-        //             .then(json => console.log(json))
-        //     }
-        // }
-
-
-        // curentLocation.editCurentCity("Bydgoszcz")
-
-        // setTimeout(() => {
-        //     curentLocation.editWeather();
-        // }, 1000)
-
-
-
-        // document.body.addEventListener('keyup', (e) => {
-        //     if (e.code === 'Enter') {
-        //         console.log(curentLocation.curentCity)
-        //     }
-        // })
-
-
-        // class CurrentLocation {
-        //     constructor () {
-
-        //     }
-        // }
-
-        // url = 'https://api.weatherapi.com/v1/current.json?key=227dd7983d814751987210757232012&q=Брест&aqi=no';
-
-        // fetch (url)
-        //     .then(rewerse => rewerse.json())
-        //     .then(item => console.log(item.current))
-
+            setTimeout(() => {
+                console.log(test2)
+            }, 1000)
+        }) 
     </script>
 </body>
 
