@@ -59,7 +59,7 @@ class CurentCity {
                         this.setCurrentCity(option.name);
                         this.loadDate();
                         loadDateAll();
-                        Search.clearLine();
+                        output.innerHTML = "";
                     })
 
                     output.append(li);
