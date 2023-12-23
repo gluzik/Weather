@@ -349,12 +349,20 @@ body {
             position: absolute;
             top: 50%;
             left: 10px;
+
+            &:hover {
+                opacity: 0.8;
+            }
         }
 
         &__right {
             position: absolute;
             right: 10px;
             top: 50%;
+
+            &:hover {
+                opacity: 0.8;
+            }
         }
     }
 }
