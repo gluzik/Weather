@@ -45,7 +45,6 @@ class CurentCity {
                 .then(reference => reference.json())
                 .then(json => {
                     this.searchArr = json;
-                    console.log(json)
                 });
 
             setTimeout(() => {
@@ -254,13 +253,54 @@ class HourlyForecast {
     }
 }
 
+class Cookies {
+    valueCookie;
+
+    constructor(keyCookie) {
+        this.keyCookie = keyCookie;
+    }
+
+    getCookie() {
+        let name_cook = this.keyCookie + "=";
+        let spl = document.cookie.split(";");
+
+        for (var i = 0; i < spl.length; i++) {
+
+            let c = spl[i];
+
+            while (c.charAt(0) == " ") {
+
+                c = c.substring(1, c.length);
+
+            }
+
+            if (c.indexOf(name_cook) == 0) {
+
+                let timeCookie = c.substring(name_cook.length, c.length);
+
+                if (timeCookie === "" || timeCookie === undefined || timeCookie === "undefined") {
+                    this.valueCookie = "Kyiv"
+                } else {
+                    this.value = timeCookie;
+                }
+            }
+        }
+    }
+
+    setCookie(value) {
+        document.cookie = `${this.keyCookie}=${value}`;
+    }
+}
+
 class Search {
-    constructor(searchInput, searchOutput) {
+    constructor(searchInput, searchOutput, data) {
         this.searchLine = searchInput;
         this.outputList = searchOutput;
+        this.data = data;
 
         this.focusSearch();
         this.inputSearch();
+        this.keySearch();
         this.blueSearch();
     }
 
@@ -286,7 +326,7 @@ class Search {
         this.searchLine.addEventListener("input", () => {
             if (this.searchLine.value !== "") {
                 this.searchLine.classList.remove("header__bar-error");
-                curentCity.searchCity(this.searchLine.value, document.querySelector('#search-output'))
+                curentCity.searchCity(this.searchLine.value, this.outputList)
             } else {
                 this.searchLine.classList.add("header__bar-error");
             }
@@ -294,12 +334,25 @@ class Search {
         })
     }
 
+    keySearch() {
+        document.body.addEventListener("keyup", (e) => {
+            if (e.code !== "Enter") return;
+            if (this.searchLine.value !== "") {
+                this.searchLine.classList.remove("header__bar-error");
+                this.data.setCurrentCity(this.searchLine.value);
+                this.data.loadDate();
+                loadDateAll();
+                this.searchLine.value = "";
+                this.searchLine.blur();
+                this.outputList.innerHTML = "";
+            } else {
+                this.searchLine.classList.add("header__bar-error");
+            }
+        })
+    }
 }
 
-let search = new Search(
-    document.querySelector('#search-input'),
-    document.querySelector('#search-output')
-)
+let searchInput = document.querySelector('#search-output');
 
 let curentCity = new CurentCity();
 curentCity.setCurrentCity("Bydgoszcz")
@@ -324,6 +377,12 @@ curentCity.loadDate();
 let forecast = new Forecast(document.querySelector('#forecast-list'))
 let hourlyForecast = new HourlyForecast(document.querySelector('#hours-list'))
 
+let search = new Search(
+    document.querySelector('#search-input'),
+    document.querySelector('#search-output'),
+    curentCity
+)
+
 
 
 
@@ -340,7 +399,11 @@ function loadDateAll() {
     }, 1000)
 }
 
-document.body.addEventListener("keyup", (e) => {
-    if (e.code !== "Enter") return;
 
-})
+
+let cookie = new Cookies("currentLocation");
+
+cookie.getCookie();
+cookie.setCookie(undefined);
+
+console.log(cookie.valueCookie)
