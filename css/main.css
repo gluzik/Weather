@@ -88,6 +88,9 @@ body {
   width: 1015px;
   z-index: 2;
 }
+.header__bar-error {
+  border: 1px solid red;
+}
 .header__bar-options {
   position: absolute;
   padding: 40px 0 0;

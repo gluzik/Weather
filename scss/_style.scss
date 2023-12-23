@@ -46,6 +46,10 @@ body {
             z-index: 2;
         }
 
+        &-error {
+            border: 1px solid red;
+        }
+
         &-options {
             position: absolute;
             padding: 40px 0 0;

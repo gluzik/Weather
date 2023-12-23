@@ -260,7 +260,6 @@ class Search {
         this.outputList = searchOutput;
 
         this.focusSearch();
-        this.submitSearch();
         this.inputSearch();
         this.blueSearch();
     }
@@ -283,19 +282,15 @@ class Search {
         })
     }
 
-    submitSearch() {
-        document.body.addEventListener("keyup", (e) => {
-            if (e.code !== "Enter") return;
-            data.setCurrentCity(option.name);
-            data.loadDate();
-            loadDateAll();
-            console.log(e.code)
-        })
-    }
-
     inputSearch() {
         this.searchLine.addEventListener("input", () => {
-            curentCity.searchCity(this.searchLine.value, document.querySelector('#search-output'))
+            if (this.searchLine.value !== "") {
+                this.searchLine.classList.remove("header__bar-error");
+                curentCity.searchCity(this.searchLine.value, document.querySelector('#search-output'))
+            } else {
+                this.searchLine.classList.add("header__bar-error");
+            }
+
         })
     }
 
@@ -344,3 +339,8 @@ function loadDateAll() {
         search.clearLine();
     }, 1000)
 }
+
+document.body.addEventListener("keyup", (e) => {
+    if (e.code !== "Enter") return;
+
+})
