@@ -132,6 +132,10 @@ body {
   background: url(/img/current-location.png) no-repeat 20px 12px, #4cbb17;
   color: #fff;
 }
+.header__bar-location:hover {
+  background-color: #398e11;
+  color: #cbcbcb;
+}
 
 .main-top {
   display: -webkit-box;

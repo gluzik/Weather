@@ -13,9 +13,16 @@ class CurentCity {
             fetch(this.currentApi)
                 .then(reference => reference.json())
                 .then(json => {
-                    this.location = json.location;
-                    this.current = json.current;
-                    this.forecast = json.forecast;
+                    if (json.error === undefined) {
+                        this.location = json.location;
+                        this.current = json.current;
+                        this.forecast = json.forecast;
+                    } else {
+                        alert(json.error.message)
+                        this.setCurrentCity("kyiv");
+                        this.loadDate()
+                        loadDateAll();
+                    }
                     console.log(json)
                 })
         }
@@ -68,15 +75,18 @@ class CurentCity {
     }
 
     findUserLocation() {
-
-        fetch('https://ipapi.co/json/')
-            .then(d => d.json())
-            .then(d => {
-                console.log(d)
-                this.setCurrentCity(d.tp);
-                loadDateAll();
-                loadDateAll();
-            });
+        setTimeout(() => {
+            fetch('https://ipapi.co/json/')
+                .then(d => d.json())
+                .then(d => {
+                    this.userIp = d.ip;
+                    // this.setCurrentCity(d.ip);
+                    // this.loadDate();
+                    // loadDateAll();
+                })
+                .catch(error => {
+                });
+        }, 2000)
     }
 
     static setDate(dayDate) {
@@ -264,45 +274,6 @@ class HourlyForecast {
     }
 }
 
-class Cookies {
-    valueCookie;
-
-    constructor(keyCookie) {
-        this.keyCookie = keyCookie;
-    }
-
-    getCookie() {
-        let name_cook = this.keyCookie + "=";
-        let spl = document.cookie.split(";");
-
-        for (var i = 0; i < spl.length; i++) {
-
-            let c = spl[i];
-
-            while (c.charAt(0) == " ") {
-
-                c = c.substring(1, c.length);
-
-            }
-
-            if (c.indexOf(name_cook) == 0) {
-
-                let timeCookie = c.substring(name_cook.length, c.length);
-
-                if (timeCookie === "" || timeCookie === undefined || timeCookie === "undefined") {
-                    this.valueCookie = "Kyiv"
-                } else {
-                    this.value = timeCookie;
-                }
-            }
-        }
-    }
-
-    setCookie(value) {
-        document.cookie = `${this.keyCookie}=${value}`;
-    }
-}
-
 class Search {
     constructor(searchInput, searchOutput, data) {
         this.searchLine = searchInput;
@@ -366,7 +337,7 @@ class Search {
 let searchInput = document.querySelector('#search-output');
 
 let curentCity = new CurentCity();
-curentCity.setCurrentCity("Bydgoszcz")
+curentCity.setCurrentCity("Kyiv")
 
 let place = new EditWindow(
     document.querySelector('#city'),
@@ -384,6 +355,7 @@ let place = new EditWindow(
     document.querySelector('#uv')
 )
 curentCity.loadDate();
+loadDateAll();
 
 let forecast = new Forecast(document.querySelector('#forecast-list'))
 let hourlyForecast = new HourlyForecast(document.querySelector('#hours-list'))
@@ -393,6 +365,12 @@ let search = new Search(
     document.querySelector('#search-output'),
     curentCity
 )
+
+document.querySelector('#current-location').addEventListener('click', () => {
+    curentCity.setCurrentCity(curentCity.userIp);
+    curentCity.loadDate();
+    loadDateAll();
+})
 
 
 function loadDateAll() {
@@ -407,11 +385,4 @@ function loadDateAll() {
 }
 
 curentCity.findUserLocation()
-
-let cookie = new Cookies("currentLocation");
-
-cookie.getCookie();
-cookie.setCookie(undefined);
-
-console.log(cookie.valueCookie)
 
