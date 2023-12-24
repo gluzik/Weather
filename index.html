@@ -18,7 +18,8 @@
         <div class="container">
             <div class="header">
                 <div class="header__bar">
-                    <input type="text" id="search-input" class="header__bar-search" placeholder="Search for your preffered city...">
+                    <input type="text" id="search-input" class="header__bar-search"
+                        placeholder="Search for your preffered city...">
                     <ul id="search-output" class="header__bar-options header__bar-options-display">
                     </ul>
                     <button class="header__bar-location" id="current-location">Current Location</button>
@@ -165,6 +166,8 @@
             </div>
         </div>
     </div>
+    <script src="//cdn.jsdelivr.net/npm/eruda"></script>
+    <script>eruda.init();</script>
     <script src="./js/CurrentCity.js"></script>
     <script src="./js/EditWindow.js"></script>
     <script src="./js/Forecast.js"></script>
