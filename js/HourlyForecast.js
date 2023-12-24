@@ -1,13 +1,16 @@
 class HourlyForecast {
     items = [];
+    move = 0;
 
     constructor(hourlyList) {
         this.hourlyuOutput = hourlyList;
+        this.sliderItem();
     }
 
     showHours(data) {
         this.hourlyuOutput.innerHTML = '';
         this.items = [];
+        this.restartSlider();
 
         for (let i = 0; i < data.length; i++) {
             let li = document.createElement("li");
@@ -58,7 +61,6 @@ class HourlyForecast {
     sliderItem() {
         this.buttonLeft = document.querySelector('#arrow-left');
         this.buttonRight = document.querySelector('#arrow-right');
-        this.move = 0;
 
         this.buttonRight.addEventListener('click', () => {
             if (this.move <= -3300) return;
@@ -93,5 +95,11 @@ class HourlyForecast {
                 this.buttonRight.children[0].setAttribute("src", "img/arrow/arrow-right.png");
             }
         })
+    }
+
+    restartSlider() {
+        this.buttonLeft.children[0].setAttribute("src", "img/arrow/arrow-left-noactive.png");
+        this.buttonRight.children[0].setAttribute("src", "img/arrow/arrow-right.png");
+        this.move = 0;
     }
 }
