@@ -129,7 +129,7 @@ body {
   font-weight: 800;
   -webkit-box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.25);
-  background: url(./img/current-location.png) no-repeat 20px 12px, #4cbb17;
+  background: url(../img/current-location.png) no-repeat 20px 12px, #4cbb17;
   color: #fff;
 }
 .header__bar-location:hover {
