@@ -67,6 +67,17 @@ class CurentCity {
         }
     }
 
+    findUserLocation() {
+
+        fetch('https://ipapi.co/json/')
+            .then(d => d.json())
+            .then(d => {
+                console.log(d)
+                this.setCurrentCity(d.tp);
+                loadDateAll();
+                loadDateAll();
+            });
+    }
 
     static setDate(dayDate) {
         let currentDate = dayDate.split(" ");
@@ -384,10 +395,6 @@ let search = new Search(
 )
 
 
-
-
-
-
 function loadDateAll() {
     setTimeout(() => {
         curentCity.setData()
@@ -399,7 +406,7 @@ function loadDateAll() {
     }, 1000)
 }
 
-
+curentCity.findUserLocation()
 
 let cookie = new Cookies("currentLocation");
 
@@ -407,3 +414,4 @@ cookie.getCookie();
 cookie.setCookie(undefined);
 
 console.log(cookie.valueCookie)
+
