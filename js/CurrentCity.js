@@ -96,7 +96,8 @@ class CurentCity {
         let monthShort = new Intl.DateTimeFormat('en-US', { month: "short" }).format(date);
         let dateNumbers = new Intl.DateTimeFormat('en-US', { day: "numeric" }).format(date);
 
-        return `${weekDay}, ${dateNumbers} ${monthShort}`;
+        // return `${weekDay}, ${dateNumbers} ${monthShort}`;
+        return `Tuesday, 23 Aug`
     }
 
     static setTime(dayTime) {
