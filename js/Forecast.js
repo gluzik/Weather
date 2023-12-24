@@ -19,7 +19,7 @@ class Forecast {
             temp.classList.add("forecast-temp");
             li.append(temp);
 
-            date.innerHTML = CurentCity.setDate(data[i].date);
+            date.innerHTML = CurentCity.setDate(data[i].date +" 00:00");
             date.classList.add("forecast-date");
             li.append(date);
 

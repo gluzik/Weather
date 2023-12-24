@@ -98,7 +98,6 @@ class CurentCity {
 
         // return `${weekDay}, ${dateNumbers} ${monthShort}`;
         // return `Tuesday, 23 Aug`
-        let dayDate = "2023-12-24 22:30";
         let currentDate = dayDate.split(" ");
 
         // Extract date components
