@@ -5,7 +5,7 @@ class CurentCity {
     forecast;
 
     setCurrentCity(city) {
-        this.currentApi = `http://api.weatherapi.com/v1/forecast.json?key=227dd7983d814751987210757232012&q=${city}&days=6&aqi=no&alerts=no`;
+        this.currentApi = `https://api.weatherapi.com/v1/forecast.json?key=227dd7983d814751987210757232012&q=${city}&days=6&aqi=no&alerts=no`;
     }
 
     loadDate() {
