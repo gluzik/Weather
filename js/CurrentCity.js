@@ -97,7 +97,25 @@ class CurentCity {
         // let dateNumbers = new Intl.DateTimeFormat('en-US', { day: "numeric" }).format(date);
 
         // return `${weekDay}, ${dateNumbers} ${monthShort}`;
-        return `Tuesday, 23 Aug`
+        // return `Tuesday, 23 Aug`
+        let dayDate = "2023-12-24 22:30";
+        let currentDate = dayDate.split(" ");
+
+        // Extract date components
+        let [datePart, timePart] = currentDate;
+        let [year, month, day] = datePart.split("-");
+        let [hours, minutes] = timePart.split(":");
+
+        // Create Date object
+        let date = new Date(year, month - 1, day, hours, minutes);
+
+        // Format the date
+        let weekDay = new Intl.DateTimeFormat('en-US', { weekday: "long" }).format(date);
+        let monthShort = new Intl.DateTimeFormat('en-US', { month: "short" }).format(date);
+        let dateNumbers = new Intl.DateTimeFormat('en-US', { day: "numeric" }).format(date);
+
+        console.log(`${weekDay}, ${dateNumbers} ${monthShort}`)
+        return `${weekDay}, ${dateNumbers} ${monthShort}`;
     }
 
     static setTime(dayTime) {
