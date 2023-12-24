@@ -23,10 +23,11 @@ let search = new Search(
     curentCity
 )
 
-curentCity.findUserLocation()
 curentCity.setCurrentCity("Kyiv")
 curentCity.loadDate();
 loadDateAll();
+
+curentCity.findUserLocation()
 
 document.querySelector('#current-location').addEventListener('click', () => {
     curentCity.setCurrentCity(curentCity.userIp);
