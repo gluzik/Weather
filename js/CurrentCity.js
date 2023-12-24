@@ -79,9 +79,6 @@ class CurentCity {
                 .then(d => d.json())
                 .then(d => {
                     this.userIp = d.ip;
-                    // this.setCurrentCity(d.ip);
-                    // this.loadDate();
-                    // loadDateAll();
                 })
                 .catch(error => {
                 });
@@ -89,31 +86,18 @@ class CurentCity {
     }
 
     static setDate(dayDate) {
-        // let currentDate = dayDate.split(" ");
-
-        // let date = new Date(currentDate);
-        // let weekDay = new Intl.DateTimeFormat('en-US', { weekday: "long" }).format(date);
-        // let monthShort = new Intl.DateTimeFormat('en-US', { month: "short" }).format(date);
-        // let dateNumbers = new Intl.DateTimeFormat('en-US', { day: "numeric" }).format(date);
-
-        // return `${weekDay}, ${dateNumbers} ${monthShort}`;
-        // return `Tuesday, 23 Aug`
         let currentDate = dayDate.split(" ");
 
-        // Extract date components
         let [datePart, timePart] = currentDate;
         let [year, month, day] = datePart.split("-");
         let [hours, minutes] = timePart.split(":");
 
-        // Create Date object
         let date = new Date(year, month - 1, day, hours, minutes);
 
-        // Format the date
         let weekDay = new Intl.DateTimeFormat('en-US', { weekday: "long" }).format(date);
         let monthShort = new Intl.DateTimeFormat('en-US', { month: "short" }).format(date);
         let dateNumbers = new Intl.DateTimeFormat('en-US', { day: "numeric" }).format(date);
 
-        console.log(`${weekDay}, ${dateNumbers} ${monthShort}`)
         return `${weekDay}, ${dateNumbers} ${monthShort}`;
     }
 
