@@ -89,12 +89,12 @@ class CurentCity {
     }
 
     static setDate(dayDate) {
-        let currentDate = dayDate.split(" ");
+        // let currentDate = dayDate.split(" ");
 
-        let date = new Date(currentDate);
-        let weekDay = new Intl.DateTimeFormat('en-US', { weekday: "long" }).format(date);
-        let monthShort = new Intl.DateTimeFormat('en-US', { month: "short" }).format(date);
-        let dateNumbers = new Intl.DateTimeFormat('en-US', { day: "numeric" }).format(date);
+        // let date = new Date(currentDate);
+        // let weekDay = new Intl.DateTimeFormat('en-US', { weekday: "long" }).format(date);
+        // let monthShort = new Intl.DateTimeFormat('en-US', { month: "short" }).format(date);
+        // let dateNumbers = new Intl.DateTimeFormat('en-US', { day: "numeric" }).format(date);
 
         // return `${weekDay}, ${dateNumbers} ${monthShort}`;
         return `Tuesday, 23 Aug`
