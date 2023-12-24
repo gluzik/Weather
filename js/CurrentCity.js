@@ -45,7 +45,7 @@ class CurentCity {
 
     searchCity(input, output) {
         if (input !== "") {
-            this.searchApi = `http://api.weatherapi.com/v1/search.json?key=227dd7983d814751987210757232012&q=${input}`
+            this.searchApi = `https://api.weatherapi.com/v1/search.json?key=227dd7983d814751987210757232012&q=${input}`
 
             fetch(this.searchApi)
                 .then(reference => reference.json())
