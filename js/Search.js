@@ -53,6 +53,7 @@ class Search {
                 this.outputList.innerHTML = "";
             } else {
                 this.searchLine.classList.add("header__bar-error");
+                this.blueSearch();
             }
         })
     }
